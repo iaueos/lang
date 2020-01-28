@@ -1,0 +1,16 @@
+@echo off
+IF (%1) NEQ () GOTO GO
+
+GOTO DONE
+
+:GO
+
+SET PATH | FIND /I "%~1"  > NUL
+IF "%ERRORLEVEL%"=="1" (	
+	SET "PATH=%~1;%path%"
+	ECHO SET
+) ELSE (
+   ECHO ALREADY SET
+)
+:DONE
+ECHO GONE

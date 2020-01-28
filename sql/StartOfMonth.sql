@@ -1,0 +1,1 @@
+select DATEADD(month, DATEDIFF(month, 0, getdate()), 0) AS StartOfMonth

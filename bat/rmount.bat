@@ -1,0 +1,1 @@
+rclone mount dm: x: --vfs-cache-mode full

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript"> 
+	$(document).ready(function() {
+		$("#TruncButton").click(function() {
+			// event.preventDefault();
+			var x = parseFloat($('#eTeks').val());
+			x = Math.trunc(x);
+			$('#eTeks').val(x);
+		}); 
+		
+		$("#FloorButton").click(function() {
+			// event.preventDefault();
+			var x = parseFloat($('#eTeks').val());
+			x = Math.floor(x);
+			$('#eTeks').val(x);
+		});	
+		
+	});
+  </script>
+  <title>coba Floor Trunc</title>
+
+</head><body>
+<form action="TheActionUrl" method="post" name="tesForm">
+<textarea cols="120" rows="1" id="eTeks"></textarea>
+<button value="Trunc" id="TruncButton" type="button">trunc</button>
+<button value="Floor" id="FloorButton" type="button">floor</button>
+</form>
+</body></html>
