@@ -1,0 +1,9 @@
+-- Generate 2^16+1
+WITH n(n) AS
+(
+    SELECT 1
+    UNION ALL
+    SELECT n+1 FROM n WHERE n < 32767
+)
+SELECT n FROM n ORDER BY n
+OPTION (MAXRECURSION 32767);

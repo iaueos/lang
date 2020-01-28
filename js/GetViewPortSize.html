@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Get Viewport Size</title>
+<script>
+
+function viewportSizeIE() { 
+	 var viewportwidth;
+	 var viewportheight;
+	  
+	 // the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
+	  
+	 if (typeof window.innerWidth != 'undefined')
+	 {
+		  viewportwidth = window.innerWidth,
+		  viewportheight = window.innerHeight
+	 }
+	  
+	// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+	 
+	 else if (typeof document.documentElement != 'undefined'
+		 && typeof document.documentElement.clientWidth !=
+		 'undefined' && document.documentElement.clientWidth != 0)
+	 {
+		   viewportwidth = document.documentElement.clientWidth,
+		   viewportheight = document.documentElement.clientHeight
+	 }
+	  
+	 // older versions of IE
+	  
+	 else
+	 {
+		   viewportwidth = document.getElementsByTagName('body')[0].clientWidth,
+		   viewportheight = document.getElementsByTagName('body')[0].clientHeight
+	 }
+	 return {width : viewportwidth, height: viewportheight}
+}
+
+function isIE() {
+	var ie=0;
+	
+	if(navigator.appName.indexOf("Internet Explorer")!=-1){     //yeah, he's using IE
+		ie=(
+        navigator.appVersion.indexOf("MSIE 9")==-1 &&   //v9 is ok
+        navigator.appVersion.indexOf("MSIE 1")==-1  //v10, 11, 12, etc. is fine too
+		);
+	}
+	
+	return ie;	
+}
+
+function viewportSize(){
+	if (isIE()) {
+		return viewportSizeIE();
+	}
+	
+	var test = document.createElement( "div" );
+
+	test.style.cssText = "position: fixed;top: 0;left: 0;bottom: 0;right: 0;";
+	document.documentElement.insertBefore( test, document.documentElement.firstChild );
+	
+	var dims = { width: test.offsetWidth, height: test.offsetHeight };
+	
+	document.documentElement.removeChild( test );
+
+	return dims;
+}
+
+function OnResize() {
+	var v = viewportSize();
+	var d = document.getElementById("vps");
+	if (d) {
+		d.innerHTML = " " + v.width +" x " + v.height;
+		var hpoint = v.height * 0.75;
+		var wpoint = v.width * 0.75; 
+		var spoint = 12; 
+		var wLen = d.innerHTML.length-5;
+		
+		var dynWidth = 1; 
+			
+		if (wpoint > hpoint) {
+			spoint = Math.round(wpoint / wLen);
+		} else {
+			spoint = Math.round(hpoint / wLen);
+		}
+		if (spoint < 8 || (spoint > (hpoint*0.9))) spoint= 8;
+		d.style.fontSize=spoint+"pt";
+	}
+	var w=  document.getElementById("wrap");
+	var hdec = 18;
+	if (isIE()) hdec = 30;
+	if (w) w.style.height = v.height -hdec;
+}
+
+function OnInit() {
+	window.onresize = OnResize;
+	window.onclick= OnResize;
+	// window.addEventListener("resize", OnResize);
+	// window.addEventListener("click", OnResize)
+	OnResize();
+}
+window.onload= OnInit;
+// document.addEventListener("DOMContentLoaded", OnInit, false)
+</script>
+<style type="text/css">
+#wrap {
+display: table;
+width: 100%;
+align: center; 
+vertical-align: middle; 
+text-align: center;
+border: 1px solid #f0f0fc ;
+padding: 0 0 0 0;
+margin: 0 0 0 0;
+}
+#vps{
+width:100%; 
+vertical-align: middle;
+align: center;
+display: table-cell;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+<div id="vps"></div>
+</div>
+</body>
+</html>

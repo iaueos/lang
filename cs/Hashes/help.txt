@@ -1,0 +1,11 @@
+﻿Hashes --<HashMethod> --<seed> -i<Input> -o<Output> <word> <word> .. <words>
+
+HashMethod: Murmur3 default hash method.
+   Murmur3 xxHash MD5 CRC32
+seed: seed number
+Input: in text file
+Output: output binary file
+word: word to hash
+
+no parameter : read from standard input (pipe),
+    output to standard ouput as numeric string

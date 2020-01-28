@@ -1,0 +1,17 @@
+<html>
+<meta charset="UTF-8">
+<head><title></title></head>
+<body>
+<script>
+const max = Number.MAX_SAFE_INTEGER;
+
+try {
+	var n = BigInt(max)
+
+// n = 2^128
+	document.write(n);
+} catch (e) {
+	document.write("Error ", e);
+}
+</script>
+</body></html>

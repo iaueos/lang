@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Golden Ratio Calc</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script type="text/javascript">
+	var goldenRatio = Math.sqrt(5)*.5 + .5;
+	
+	function onBlur(e)
+	{
+		var m = e.target.id;
+		if (m == "less")
+			$("#more").val("");
+			
+		if (m == "more")
+			$("#less").val("");
+	}
+	
+	function entryOnSubmit(e)
+	{
+		e.preventDefault();
+		
+		var less = $("#less").val();
+		var more = $("#more").val();
+			
+		var all = less.concat(more);
+		if (all.length > 1)
+		{
+			if (less ==="") 
+			{
+				var le = parseInt(more) / goldenRatio;
+				$("#less").val(le);
+			}
+			else if (more == "")
+			{
+				var mo = parseInt(less) * goldenRatio; 
+				$("#more").val(mo);
+			}
+		}
+	}	
+
+</script>
+</head>
+<body> 
+
+<form id="entry" method="post" target="./" onsubmit="entryOnSubmit(event)">
+<div id="wrap">
+	<table cellpadding="3" cellspacing ="0" border="0">
+	<tr><td>Less </td><td><input type = "text" id="less" onblur="onBlur(event)"></input></td></tr>
+	
+	<tr><td>More </td><td><input type = "text" id="more" onblur="onBlur(event)"></input></td></tr>
+	
+	
+	<tr><td colspan="2"><button type="submit" value="1">GO</button></td></tr>
+	
+	</table>
+	
+	<div id="result">
+	</div>
+</div>
+</form>
+
+<script type="text/javascript">
+	
+	
+	
+	
+</script>
+
+
+</body></html>

@@ -1,0 +1,19 @@
+<html><head>
+<body>
+<script> 
+var supportsES6 = function() {
+  try {
+    new Function("(a = 0) => a");
+    return true;
+  }
+  catch (err) {
+    return false;
+  }
+}();
+
+if(supportsES6)
+	document.write("support class");
+else
+	document.write("no support");
+</script>
+</body>

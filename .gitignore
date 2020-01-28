@@ -1,0 +1,26 @@
+*.exe 
+*.suo 
+*.o
+*\bin\*
+/bin
+/obj
+bin
+obj
+*.bak
+*.suo
+publish/
+*.Publish.xml
+# Publish Web Output
+hrportal.Publish.xml
+*.[Pp]ublish.xml
+*.pubxml
+*.publishproj
+*.rej
+*.user
+=======
+*.lib
+*.xml
+*.svn-base
+*/.vs/*
+*/.vs/*/*
+.vs

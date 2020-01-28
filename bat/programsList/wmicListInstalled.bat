@@ -1,0 +1,1 @@
+wmic /node:localhost /output:d:\programlist.htm product get name,version /format:htable.xsl

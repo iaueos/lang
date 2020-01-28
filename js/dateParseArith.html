@@ -1,0 +1,136 @@
+<html> 
+<head>
+
+<style type="text/css">
+
+.selInvoiceWrap
+{
+    height: 50px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin: 0px 0px 0px 0px;
+    padding: 3px 3px 3px 3px;  
+}
+.selProgress 
+{
+    border: 3px solid rgb(255, 96, 32);
+    background-color: Yellow;
+    text-align: center;
+    font-weight: bolder;
+    
+    vertical-align: bottom;
+    display: block;
+    float: none;
+}
+.innerUploadDiv 
+{
+    font-size: 20px;
+    display: block;
+    height: 25px;
+    margin-top: 10px;
+    
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.js"></script>
+<script  type="text/javascript"> 
+
+function dmy(dx)  {
+    var ax = dx.split(/[\.\-\/]/);
+	console.log('dd:', ax[0], 'mm: ', ax[1], 'yyyy: ', ax[2]);
+	var d = new Array();
+		
+    d.yyyy = Number(ax[2]);
+	d.mm = Number(ax[1]);
+	d.dd = Number(ax[0]);
+
+	if ((ax.length > 2) &&
+        (d.yyyy != NaN && d.mm != NaN && d.dd != NaN)
+        && d.yyyy >= 0 && d.yyyy < 9999
+        && d.mm > 0 && d.mm < 13
+        && d.dd > 0 && d.dd < 32 
+        )
+		return new Date(d.yyyy, d.mm-1, d.dd);
+	else
+		return null;
+}
+
+$(document).ready(function () {
+
+    $('#b1').click(function () {
+
+        $('#b1').hideBalloon({});
+        $('#v1').hideBalloon({});
+        $('#v2').hideBalloon({});
+
+        var v1 = dmy($('#d1').val());
+        var v2 = dmy($('#d2').val());
+        if (v1 && v2)
+            $('#v0').html(dmy($('#d1').val()) - dmy($('#d2').val()));
+        else
+            $('#b1').showBalloon({ contents: 'invalid date', position: 'bottom', minLifetime: 0 });
+
+        if (v1)
+            $('#v1').html(v1);
+        else
+            $('#d1').showBalloon({ contents: 'invalid date', position: 'bottom', minLifetime: 3000 });
+
+
+        if (v2)
+            $('#v2').html(v2);
+        else
+            $('#d2').showBalloon({ contents: 'invalid date', position: 'bottom', minLifetime: 3000 });
+
+        
+    });
+
+    $('#b2').click(function () {
+        if ($('#d1').val() === "Hello") {
+            doit(Hello);
+        } else {
+            doit(Alo);
+        }
+    });
+
+//    $('#b2').click(function () {
+//        $('#v1').html(' ' + Number($('#d1').val()));
+//        $('#v2').html(' ' + Number($('#d2').val()));
+//    });
+
+
+});
+
+function doit(f) {
+    alert (typeof f);
+    f(); 
+ }
+
+function Hello() {
+    alert("Hello!");
+}
+
+function Alo() { alert("alo"); }
+
+</script> 
+</head>
+<body>
+	<input id="d1" type="text"></input>
+	<input id="d2" type="text"></input>
+	<input id="b1" type="button" value="Go"></input>
+	<input id="b2" type="button" value="Num"></input>
+    <div id="v0"></div>
+	<div id="v1"></div>
+	<div id="v2"></div>
+
+
+    <div class="selInvoiceWrap">
+   <div id="UploadProgressDiv" class="selProgress selInvoiceWrap"> 
+        <div class="innerUploadDiv">
+            Upload in Progress 
+        </div>
+   </div>
+</div>
+
+</body>
+</html>

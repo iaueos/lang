@@ -1,0 +1,11 @@
+--- GET ALL CONNECTED USERS 
+
+select spid, status, loginame, 
+hostname, blocked, db_name(dbid) as databasename, cmd 
+from master..sysprocesses
+where  spid > 50
+
+
+EXEC SP_WHO
+
+EXEC SP_WHO2

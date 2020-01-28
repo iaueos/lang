@@ -1,0 +1,10 @@
+dbcc checkident(<tablename>, reseed, 0)
+
+DBCC CHECKIDENT   
+ (   
+    table_name  
+        [, { NORESEED | { RESEED [, new_reseed_value ] } } ]  
+)  
+[ WITH NO_INFOMSGS ]  
+
+
