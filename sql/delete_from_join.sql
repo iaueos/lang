@@ -3,10 +3,10 @@ create table tb_b (id int identity(1,1), nma varchar(10), primary key(id));
 
 
 insert tb_a (nm) 
-select items from dbo.fn_explode(' ', 'tu wa ga pat ma'); 
+select value nm from string_split( 'tu wa ga pat ma',' '); 
 
 insert tb_b (nma)
-select items from dbo.fn_explode(' ', 'uno dwi tri cat pan'); 
+select value nma from string_split('uno dwi tri cat pan', ' '); 
 
 select * from tb_a;
 select * from tb_b;
