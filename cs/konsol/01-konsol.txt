@@ -1,0 +1,32 @@
+01 
+	konsol baca tulis database 
+
+Tujuan: 
+    diharapkan bisa membuat aplikasi konsol untuk 
+	baca, ubah, hapus data dalam database SQL Server 
+	setelah menguasai dasar ilmu minimum 
+
+
+Visual Studio 2010 
+
+    File >> New >> Project 
+    beri nama Konsol >> Ok 
+
+    Solution Explorer 
+
+   klik kanan  References >> Add References >> .NET
+   pilih System.Configuration >> Ok 
+
+Dasar kajian : 
+- variable: data type, implicit, explicit 
+- SQL : general DDL, SELECT INSERT UPDATE,  C# data type mapping 
+- namespace 
+- class, access modifier, static, extension methods 
+- console argument parsing 
+- application setting : app.config, AppSetting generalization 
+- interface 
+- iteration : foreach, for 
+- generics 
+- Linq : ToList 
+- Dapper 
+- dynamic : usage in dapper 
