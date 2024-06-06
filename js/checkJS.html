@@ -1,0 +1,36 @@
+<html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<head>
+
+
+<title>Js Compability tests</title>
+
+</head>
+<body>
+	this is JS test for IE
+	<br/>
+	<span id="output1">
+	
+	</span>
+<script lang="text/javascript">
+var v =  '1111-222-3-3-34-4-5-5-66-6-7-78;89;90';
+	var w = '||123; 456; ||78 ; 810||ab; cd; e||';
+  var dashRx = /-/g;
+  var dash3 = /3/g;
+  v= v.replace('-',',') 
+  v= v.replace(dashRx,''); 
+  v= v.replace('1','x');
+  v=v.replace(/1/g,'y');
+  v= v.replace('-',',') + v.replace(dashRx, '');
+  v=v.replace('0','a').replace('9','b').replace('8','c').replace('7','d').replace('6','e').replace('5','f').replace('4','g').replace(dash3,'h');
+  var o = document.getElementById("output1");
+  w = w.replace(/\|\|/g, "\r\n");
+  w =  w.replace(/(; )/g, "\r\n");
+  
+  v = v + w;
+  o.innerText = v;
+	console.log(v);
+	
+</script>
+</body>

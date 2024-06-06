@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<title> js arguments object</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+if (typeof Object.assign !== 'function') {
+  // Must be writable: true, enumerable: false, configurable: true
+  Object.assign = function (target, varArgs) { // .length of function is 2
+      'use strict';
+      if (target === null || target === undefined) {
+        throw new TypeError('Cannot convert undefined or null to object');
+      }
+      var to = Object(target);
+      for (var index = 1; index < arguments.length; index++) {
+        var nextSource = arguments[index];
+        if (nextSource !== null && nextSource !== undefined) { 
+          for (var nextKey in nextSource) {
+            // Avoid bugs when hasOwnProperty is shadowed
+            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+              to[nextKey] = nextSource[nextKey];
+            }
+          }
+        }
+      }
+      return to;
+    } 
+}
+function print() {
+	var letext = document.getElementById("text");
+	for (var i = 0; i < arguments.length; i++) {
+		var p = document.createElement('pre'); 
+		p.innerHTML = i + ' ' + arguments[i];
+		letext.appendChild(p);
+	}	
+}
+
+function reapply() {
+	var a= [];
+	for (var i = 0; i < arguments.length; i++) {
+		a.push(arguments[i]);
+    }
+	a[0] = "{5}{4}{3}{2}{1}{0}";
+	return String.format.apply(this,a);
+}
+
+function Msg() {
+	var a = Object.assign([], arguments);
+	// a[0]=Msg(a[0]);
+    return String.format.apply(this,a); 
+}
+function empty() {
+	var leText = document.getElementById("text");
+	
+	leText.innerHTML = '';
+}
+function val(x){
+	var x = document.getElementById(x);
+	return (x)? x.value: undefined;
+}
+
+function testFormat() 
+{
+	print(String.format(val("fmt"), val("val0"),  val("val1"),  val("val2"),  val("val3"),  val("val4"),  val("val5"), val("val6")))	;
+	// print(String.format("the {0} and the {1}", "quick", "dead"))
+}
+function testpassing()
+{
+print(Msg(val("fmt"), val("val0"),  val("val1"),  val("val2"),  val("val3"),  val("val4"),  val("val5"), val("val6")))	;
+}
+if (!String.format) {
+    String.format = function (formatstring) {
+	var ax = [];
+	for (var li = 1; li < arguments.length; li++) {
+		ax.push(arguments[li])
+	}
+	var sx = formatstring;
+	return sx.replace(/((?:[^{}]|(?:\{\{)|(?:\}\}))+)|(?:\{([0-9]+)\})/g, 
+			function (m, str, index) 
+			{
+				if (str) {
+					return str.replace(/(?:{{)|(?:}})/g, 
+						function(m) { return m[0]; });
+				} else {
+					if (index > arguments.length) {
+						return '';
+					} return ax[parseInt(index)];
+				}
+			});
+	
+	};
+}
+
+
+</script> 
+</head>
+<body>
+<div id="buttons">
+<input type="text" id="fmt"  placeholder="format text" value="the {5} {2} {1} {4} over a {3} {0} "/>
+<input type="text" id="val0" placeholder="value 0" value="dog"/>
+<input type="text" id="val1" placeholder="value 1" value="fox"/>
+<input type="text" id="val2" placeholder="value 2" value="brown"/>
+<input type="text" id="val3" placeholder="value 3" value="lazy"/>
+<input type="text" id="val4" placeholder="value 4" value="jumps"/>
+<input type="text" id="val5" placeholder="value 5" value="quick"/>
+<input type="text" id="val6" placeholder="value 6" value="quick"/>
+<br/>
+<button id="none" onclick="empty()">no</button>
+<button id="two" onclick="print('one','two')">two</button>
+<button id="three" onclick="print(1,2,3)">three</button>
+<button id="four" onclick="print('siji','loro','telu','papat')">four</button>
+<button id="fmt" onclick="testFormat()">format</button>
+<button id="msg" onclick="testpassing()">passing</button>
+
+</div>
+<div id="text">
+</div>
+
+</body></html>
