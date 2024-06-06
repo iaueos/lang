@@ -8,7 +8,9 @@ namespace Enk {
         {
             int act = 0;
             if (args.Length < 1) {
-                    Console.WriteLine("enk \"string\" --option |Encrypt string|option:|   e: Base64Encode |   d: Base64Decode|   s: SHA256".Replace("|","\r\n"));
+                    Console.WriteLine("enk \"string\" --option |Encrypt string|option:"
+                    +"|   e: Base64Encode |   d: Base64Decode"
+                    +"|   s: SHA256".Replace("|","\r\n"));
                     return;
             }
             foreach(string s in args)  {
