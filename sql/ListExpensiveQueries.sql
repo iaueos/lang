@@ -1,3 +1,4 @@
+-- List expensive queries
 /*
 This Transact-SQL script returns the values from DMV sys.dm_exec_query_stats to rate SQL statements by their costs.
 These "costs" can be
@@ -13,10 +14,8 @@ Link:
   http://msdn.microsoft.com/de-de/library/ms189741.aspx
 */
 
--- List expensive queries
 DECLARE @MinExecutions int;
 SET @MinExecutions = 5
-
 SELECT EQS.total_worker_time AS TotalWorkerTime
       ,EQS.total_logical_reads + EQS.total_logical_writes AS TotalLogicalIO
       ,EQS.execution_count As ExeCnt
