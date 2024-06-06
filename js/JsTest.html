@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head><meta charset="UTF-8">
+<title>js Testing</title>
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css")" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js")"  type="text/javascript"></script>
+  
+</head>
+<body>
+    <input type ="text" id="mut"/>
+    <button type="button" id="me">Click me</button>
+    <button type="button" id="confirma">Confirm</button>
+    <script type="text/javascript">
+    //import Noty from "noty";
+    
+    function me_click(){
+        var t = document.getElementById("mut").value;
+        new Noty({
+          theme: 'light',
+          type: 'success',
+          layout: 'topCenter',
+          text: t
+          timeout: 3000
+        }).show();
+    }
+    
+    function confirma_click() {
+    var n = new Noty({
+      theme: 'light', 
+      layout: 'center',
+      text: 'Do you want to continue? <input id="example" type="text">',
+      buttons: [
+        Noty.button('YES', 'btn btn-success', function () {
+            console.log('button 1 clicked');
+        }, {id: 'button1', 'data-status': 'ok'}),
+
+        Noty.button('NO', 'btn btn-error', function () {
+            console.log('button 2 clicked');
+            n.close();
+        })
+      ]
+    });
+    n.show();
+    
+    }
+ 
+    
+    document.getElementById("me").addEventListener('click', me_click); 
+    document.getElementById("confirma").addEventListener('click', confirma_click); 
+    </script>
+</body>
