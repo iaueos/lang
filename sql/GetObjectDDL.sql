@@ -1,4 +1,4 @@
-sp_helptext 'fn_NeedApproval'
+sp_helptext 'objectname'
 
-select object_definition(OBJECT_ID('fn_NeedApproval')) ode
+select object_definition(OBJECT_ID('objectname')) ode
 
