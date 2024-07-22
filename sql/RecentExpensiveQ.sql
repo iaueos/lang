@@ -19,7 +19,8 @@ JOIN (
     SELECT 1 executions
     ) mi ON 1 = 1
 CROSS APPLY sys.dm_exec_sql_text(s.sql_handle) AS q
-LEFT JOIN sys.databases AS DB ON q.dbid = DB.database_id
+LEFT JOIN sys.databases AS DB 
+ON q.dbid = DB.database_id
 WHERE (
         NULLIF(NULLIF(mi.executions, 0), 1) IS NULL
         OR s.execution_count > mi.executions
